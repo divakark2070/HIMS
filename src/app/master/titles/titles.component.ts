@@ -47,8 +47,6 @@ export class TitlesComponent implements OnInit{
   delete(id:any){
     swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -60,8 +58,7 @@ export class TitlesComponent implements OnInit{
         })
         swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
-          'success'
+         
         )
       }
     })
@@ -73,12 +70,24 @@ export class TitlesComponent implements OnInit{
     if(this.id==0){
     this.api.post("titles", data).subscribe((result:any)=>{
       this.load();
+      swal.fire({
+        icon: 'success',
+        title: 'Your data has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
       
     })
     }
     else{
       this.api.put("titles/" + this.id, data).subscribe((result:any)=>{
         this.load();
+        swal.fire({
+          icon: 'success',
+          title: 'Data updated!',
+          showConfirmButton: false,
+          timer: 1500
+        })
         
       })
     }

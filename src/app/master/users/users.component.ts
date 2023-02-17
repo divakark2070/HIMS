@@ -25,6 +25,7 @@ export class UsersComponent {
     this.id = 0;
     this.api.get("users").subscribe((result:any)=>{
    
+      console.log(result);
       
       this.result = result.data;
     })
@@ -43,7 +44,7 @@ export class UsersComponent {
         name:new FormControl(result.data.name,Validators.compose([Validators.required])),
         username:new FormControl(result.data.username,Validators.compose([Validators.required])),
         password:new FormControl(result.data.password,Validators.compose([Validators.required])),
-      })
+      })    
     })
   }
 
@@ -58,6 +59,12 @@ export class UsersComponent {
           if (result.isConfirmed) {
             this.api.delete("users/" + id).subscribe((result:any)=>{
               this.load()
+              swal.fire({
+                icon: 'success',
+                title: 'Data Deleted!',
+                showConfirmButton: false,
+                timer: 1500
+              })
             });
             };
           })
@@ -110,6 +117,12 @@ export class UsersComponent {
 
   submit(data:any){
     if(this.id==0){
+      swal.fire({
+        icon: 'success',
+        title: 'Your data has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
     this.api.post("users", data).subscribe((result:any)=>{
       this.load();
       
@@ -118,6 +131,12 @@ export class UsersComponent {
     else{
       this.api.put("users/" + this.id, data).subscribe((result:any)=>{
         this.load();
+        swal.fire({
+          icon: 'success',
+          title: ' Data has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
         
       })
     }
