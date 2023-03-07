@@ -4,7 +4,7 @@ import { Injectable, OnInit } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService implements OnInit{
+export class ApiService {
 
   baseurl="http://localhost:8081/"
 
@@ -23,8 +23,6 @@ export class ApiService implements OnInit{
   };
 
   post(api:string, data:any){
-   
-
     return this.http.post(this.baseurl + api, data ,{ headers: this.getHeader() })
   };
 
@@ -38,7 +36,5 @@ export class ApiService implements OnInit{
 
 
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  
 }

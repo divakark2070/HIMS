@@ -133,7 +133,7 @@ export class UsersComponent {
         this.load();
         swal.fire({
           icon: 'success',
-          title: ' Data has been updated',
+          title: ' Data updated',
           showConfirmButton: false,
           timer: 1500
         })

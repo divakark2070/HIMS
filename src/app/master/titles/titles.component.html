@@ -4,7 +4,7 @@
             <div>Titles</div>
         </div>
         <div class="page-title-actions">
-            <label class="text-danger">Count: 10</label>
+            <label class="text-danger">Count: {{ result.length }}</label>
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
                     <div class="position-relative form-group">
                         <label>Title<span class="text-danger">*</span></label>
                         <input placeholder="Title" type="text"formControlName="name"  class="form-control">
-                        <em class="error text-danger small" *ngIf="formdata.controls.name.touched && formdata.controls.name.invalid">Please enter your firstname</em>
+                        <em class="error text-danger small" *ngIf="formdata.controls.name.touched && formdata.controls.name.invalid">Please enter title</em>
                     </div>
 
                     <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
