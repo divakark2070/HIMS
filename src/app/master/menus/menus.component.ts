@@ -51,7 +51,6 @@ export class MenusComponent implements OnInit{
 
   delete(id: any) {
     swal.fire({
-      position: 'top-end',
       title: 'Are you sure?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
