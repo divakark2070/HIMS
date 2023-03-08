@@ -1,0 +1,105 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div>Menu</div>
+        </div>
+        <div class="page-title-actions">
+            <label class="text-danger" *ngIf="result">Count: {{ result.length }}</label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)" class="">
+                    <div class="position-relative form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Title<span class="text-danger">*</span></label>
+                            <input placeholder="title" type="text"formControlName="title"  class="form-control">
+                            <em class="error text-danger small" *ngIf="formdata.controls.title.touched && formdata.controls.title.invalid">Please enter title</em>
+                            </div>
+                        <div class="col-md-4">
+                            <label>Can have childs?<span class="text-danger">*</span></label>
+                        <input placeholder="can have child?" type="text"formControlName="child"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.child.touched && formdata.controls.child.invalid">Please enter name</em>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Menuid<span class="text-danger">*</span></label>
+                        <input placeholder="Menuid" type="text"formControlName="menuid"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.menuid.touched && formdata.controls.menuid.invalid">Please enter menuid</em>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <label>Sr.No<span class="text-danger">*</span></label>
+                        <input placeholder="srno" type="text"formControlName="srno"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.srno.touched && formdata.controls.srno.invalid">Please enter srno</em>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <label>Icon<span class="text-danger">*</span></label>
+                        <input placeholder="Icon" type="text"formControlName="icon"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.icon.touched && formdata.controls.icon.invalid">Please enter icon</em>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <label>Link<span class="text-danger">*</span></label>
+                        <input placeholder="link" type="text"formControlName="link"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.link.touched && formdata.controls.link.invalid">Please enter link</em>
+                        </div>
+                    </div>
+                    </div>
+
+                    <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 mt-2">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="text-center">
+                        <tr>
+                            <th style="width: 150px;">Action</th>
+                            <th style="width: 80px;">No</th>
+                            <th>title</th>
+                            <th>child</th>
+                            <th>menuid</th>
+                            <th>srno</th>
+                            <th>icon</th>
+                            <th>Link</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of result; let i=index" class="text-center">
+                            <td class="text-center">
+                                
+                                <button (click)="edit(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-primary"><i class="pe-7s-tools btn-icon-wrapper"> </i></button>
+                                <button (click)="delete(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+
+                            </td>
+                            <td>{{i+1}}</td>
+                            <td>{{data.title}}</td>
+                            <td>{{data.child}}</td>                         
+                            <td>{{data.menuid}}</td>
+                            <td>{{data.srno}}</td>
+                            <td>{{data.icon}}</td>
+                            <td>{{data.link}}</td>
+                           
+                          
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

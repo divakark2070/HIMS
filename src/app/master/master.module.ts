@@ -10,7 +10,9 @@ import { TalukasComponent } from './talukas/talukas.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { TitlesComponent } from './titles/titles.component';
 import { UsersComponent } from './users/users.component';
-
+import { PaymentmodesComponent } from './paymentmodes/paymentmodes.component';
+import { modulesComponent } from './modules/modules.component';
+import { MenusComponent } from './menus/menus.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { UsersComponent } from './users/users.component';
     TalukasComponent,
     DistrictsComponent,
     TitlesComponent,
-    UsersComponent
+    UsersComponent,
+    PaymentmodesComponent,
+    modulesComponent,
+    MenusComponent
   ],
   imports: [
     CommonModule,
