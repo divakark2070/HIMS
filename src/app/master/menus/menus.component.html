@@ -24,8 +24,8 @@
                             </div>
                         <div class="col-md-4">
                             <label>Can have childs?<span class="text-danger">*</span></label>
-                        <input placeholder="can have child?" type="text"formControlName="child"  class="form-control">
-                        <em class="error text-danger small" *ngIf="formdata.controls.child.touched && formdata.controls.child.invalid">Please enter name</em>
+                        <input placeholder="can have child?" type="text"formControlName="canhavechilds"  class="form-control">
+                        <em class="error text-danger small" *ngIf="formdata.controls.canhavechilds.touched && formdata.controls.canhavechilds.invalid">Please enter child</em>
                         </div>
                         <div class="col-md-4">
                             <label>Menuid<span class="text-danger">*</span></label>
@@ -65,11 +65,11 @@
                         <tr>
                             <th style="width: 150px;">Action</th>
                             <th style="width: 80px;">No</th>
-                            <th>title</th>
-                            <th>child</th>
-                            <th>menuid</th>
-                            <th>srno</th>
-                            <th>icon</th>
+                            <th>Title</th>
+                            <th>Child</th>
+                            <th>Menuid</th>
+                            <th>SrNo</th>
+                            <th>Icon</th>
                             <th>Link</th>
                          
                         </tr>
@@ -84,7 +84,7 @@
                             </td>
                             <td>{{i+1}}</td>
                             <td>{{data.title}}</td>
-                            <td>{{data.child}}</td>                         
+                            <td>{{data.canhavechilds}}</td>                         
                             <td>{{data.menuid}}</td>
                             <td>{{data.srno}}</td>
                             <td>{{data.icon}}</td>

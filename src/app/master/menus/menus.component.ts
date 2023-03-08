@@ -27,7 +27,7 @@ export class MenusComponent implements OnInit{
     })
     this.formdata = new FormGroup({
       title:new FormControl("",Validators.compose([Validators.required])),
-      child:new FormControl("",Validators.compose([Validators.required])),
+      canhavechilds:new FormControl("",Validators.compose([Validators.required])),
       menuid:new FormControl("",Validators.compose([Validators.required])),
       srno:new FormControl("",Validators.compose([Validators.required])),
       icon:new FormControl("",Validators.compose([Validators.required])),
@@ -40,7 +40,7 @@ export class MenusComponent implements OnInit{
     this.api.get("menus/" + id).subscribe((result: any) => {
       this.formdata = new FormGroup({
         title:new FormControl(result.data.title,Validators.compose([Validators.required])),
-        child:new FormControl(result.data.child,Validators.compose([Validators.required])),
+        chicanhavechildsld:new FormControl(result.data.child,Validators.compose([Validators.required])),
         menuid:new FormControl(result.data.menuid,Validators.compose([Validators.required])),
         srno:new FormControl(result.data.srno,Validators.compose([Validators.required])),
         icon:new FormControl(result.data.icon,Validators.compose([Validators.required])),
@@ -51,6 +51,7 @@ export class MenusComponent implements OnInit{
 
   delete(id: any) {
     swal.fire({
+      position: 'top-end',
       title: 'Are you sure?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
