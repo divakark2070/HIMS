@@ -14,6 +14,25 @@ import { PaymentmodesComponent } from './paymentmodes/paymentmodes.component';
 import { modulesComponent } from './modules/modules.component';
 import { MenusComponent } from './menus/menus.component';
 import { MenufilterPipe } from './menufilter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BedsComponent } from './beds/beds.component';
+import { BloodgroupsComponent } from './bloodgroups/bloodgroups.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ConcessionauthoritiesComponent } from './concessionauthorities/concessionauthorities.component';
+import { ConfigurationsComponent } from './configurations/configurations.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { IpdoptionsComponent } from './ipdoptions/ipdoptions.component';
+import { IpdservicesComponent } from './ipdservices/ipdservices.component';
+import { LabsComponent } from './labs/labs.component';
+import { LabtestsComponent } from './labtests/labtests.component';
+import { LanguagesComponent } from './languages/languages.component';
+import { NationalitiesComponent } from './nationalities/nationalities.component';
+import { OpdservicesComponent } from './opdservices/opdservices.component';
+import { RelationsComponent } from './relations/relations.component';
+import { ReligionsComponent } from './religions/religions.component';
+import { RoomsComponent } from './rooms/rooms.component';
+import { SpecializationsComponent } from './specializations/specializations.component';
+import { UsertypesComponent } from './usertypes/usertypes.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +46,32 @@ import { MenufilterPipe } from './menufilter.pipe';
     PaymentmodesComponent,
     modulesComponent,
     MenusComponent,
-    MenufilterPipe
+    MenufilterPipe,
+    BedsComponent,
+    BloodgroupsComponent,
+    CategoriesComponent,
+    ConcessionauthoritiesComponent,
+    ConfigurationsComponent,
+    DepartmentsComponent,
+    IpdoptionsComponent,
+    IpdservicesComponent,
+    LabsComponent,
+    LabtestsComponent,
+    LanguagesComponent,
+    NationalitiesComponent,
+    OpdservicesComponent,
+    RelationsComponent,
+    ReligionsComponent,
+    RoomsComponent,
+    SpecializationsComponent,
+    UsertypesComponent
   ],
   imports: [
     CommonModule,
     MasterRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
+
   ]
 })
 export class MasterModule { }

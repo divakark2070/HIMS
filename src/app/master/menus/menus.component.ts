@@ -14,6 +14,8 @@ export class MenusComponent implements OnInit{
   result: any;
   parentMenus:any;
   id = 0;
+  p:number=0;
+  itemsPerPage:number=3;
 
   constructor(private api: ApiService, private toastr:ToastrService) { }
 
@@ -59,7 +61,7 @@ export class MenusComponent implements OnInit{
 
   delete(id: any) {
     swal.fire({
-      position:'center-right',
+      position:'center',
       title: 'Are you sure?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

@@ -20,31 +20,38 @@ export class UsersComponent {
   ngOnInit(): void {
    this.load();
   }
+  cancel(){
+   this.load();
+  }
 
   load(){
     this.id = 0;
     this.api.get("users").subscribe((result:any)=>{
-   
-      console.log(result);
-      
+
+
       this.result = result.data;
     })
     this.formdata= new FormGroup({
       name:new FormControl("",Validators.compose([Validators.required])),
       username:new FormControl("",Validators.compose([Validators.required])),
       password:new FormControl("",Validators.compose([Validators.required])),
+      mobileno:new FormControl("",Validators.compose([Validators.required])),
+      email:new FormControl("",Validators.compose([Validators.required])),
 
     })
   }
 
   edit(id:any){
     this.id = id;
+    console.log(this.result)
     this.api.get("users/" +id).subscribe((result:any)=>{
       this.formdata= new FormGroup({
         name:new FormControl(result.data.name,Validators.compose([Validators.required])),
         username:new FormControl(result.data.username,Validators.compose([Validators.required])),
         password:new FormControl(result.data.password,Validators.compose([Validators.required])),
-      })    
+        mobileno:new FormControl(result.data.mobileno,Validators.compose([Validators.required])),
+        email:new FormControl(result.data.email,Validators.compose([Validators.required])),
+      })
     })
   }
 
@@ -54,7 +61,7 @@ export class UsersComponent {
       showDenyButton: false,
       showCancelButton: true,
       confirmButtonText: 'Delete',
-      
+
     }).then((result: { isConfirmed: any; }) => {
           if (result.isConfirmed) {
             this.api.delete("users/" + id).subscribe((result:any)=>{
@@ -68,7 +75,7 @@ export class UsersComponent {
             });
             };
           })
-    
+
   }
 
   submit(data:any){
@@ -77,11 +84,11 @@ export class UsersComponent {
         icon: 'success',
         title: 'Your data has been saved',
         showConfirmButton: false,
-        timer: 1500
+        timer: 500
       })
     this.api.post("users", data).subscribe((result:any)=>{
       this.load();
-      
+
     })
     }
     else{
@@ -91,9 +98,9 @@ export class UsersComponent {
           icon: 'success',
           title: ' Data updated',
           showConfirmButton: false,
-          timer: 1500
+          timer: 500
         })
-        
+
       })
     }
   }

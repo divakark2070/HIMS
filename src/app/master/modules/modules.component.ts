@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/api.service';
 import swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modules',
@@ -13,7 +14,7 @@ export class modulesComponent implements OnInit{
   results: any;
   id = 0;
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.load();
@@ -62,11 +63,12 @@ export class modulesComponent implements OnInit{
         this.api.delete("modules/" + id).subscribe((result: any) => {
           this.load()
         })
-        swal.fire(
-          'Deleted!',
-
-        )
+        this.toastr.success('Deleted Sccessfully','Module')       
       }
+      else{
+        this.toastr.error('Something went wrong','Not Deleted')
+      }
+
     })
 
 
@@ -82,26 +84,31 @@ export class modulesComponent implements OnInit{
       this.api.post("modules", data).subscribe((result: any) => {
         this.load();
         (<HTMLInputElement>document.getElementById("image")).value = "";
-        swal.fire({
-          icon: 'success',
-          title: 'Your data has been saved',
-          showConfirmButton: false,
-          timer: 1500
-        })
+        this.toastr.success('Saved Successfully','Gender');
+        // swal.fire({
+        //   icon: 'success',
+        //   title: 'Your data has been saved',
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
 
       })
     }
-    else {
+    else if(this.id!=0){
       this.api.put("modules/" + this.id, data).subscribe((result: any) => {
         this.load();
-        swal.fire({
-          icon: 'success',
-          title: 'Data updated!',
-          showConfirmButton: false,
-          timer: 1500
-        })
+        this.toastr.success('Updated Successfully','Gender');
+        // swal.fire({
+        //   icon: 'success',
+        //   title: 'Data updated!',
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
 
       })
+    }
+    else{
+      this.toastr.error('Something went wrong','Not Deleted')
     }
   }
   

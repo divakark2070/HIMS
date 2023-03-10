@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgxUiLoaderService } from 'ngx-ui-loader/public-api';
+import { ApiService } from './shared/api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-hims-project';
-
+  show = false;
+  constructor(public api:ApiService){    
+    this.api.showspinner.subscribe((result:any)=>{
+      this.show = result;
+    });
+  }
  
 }

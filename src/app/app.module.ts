@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { timeout } from 'rxjs';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NgxUiLoaderHttpModule } from 'ngx-ui-loader/lib/http/ngx-ui-loader-http.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { timeout } from 'rxjs';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut:500,
+      timeOut:1500,
       progressBar:true,
       progressAnimation:'increasing'
     }),

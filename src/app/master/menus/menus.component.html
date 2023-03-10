@@ -34,7 +34,7 @@
                             <label>Parent Menu<span class="text-danger">*</span></label>
                             <select class="form-control" formControlName="menuid">
                                 <option value="0">Menu</option>
-                                <option *ngFor="let menu of parentMenus;" value="{{ menu.id }}">{{ menu.title }}</option>
+                                <option *ngFor="let menu of parentMenus | paginate: { itemsPerPage:itemsPerPage , currentPage: p };" value="{{ menu.id }}">{{ menu.title }}</option>
                             </select>
                         <em class="error text-danger small" *ngIf="formdata.controls.menuid.touched && formdata.controls.menuid.invalid">Please enter menuid</em>
                         </div>
@@ -79,6 +79,9 @@
                       </ul>
                     </li>
                   </ul>
+            </div>
+            <div>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </div>

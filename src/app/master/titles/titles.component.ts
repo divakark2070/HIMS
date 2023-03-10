@@ -29,6 +29,8 @@ export class TitlesComponent implements OnInit{
     this.id = 0;
     this.api.get("titles").subscribe((result:any)=>{
       this.result = result.data;
+    }, (error)=>{
+      
     })
     this.formdata= new FormGroup({
       name:new FormControl("",Validators.compose([Validators.required]))
