@@ -13,6 +13,7 @@ import { UsersComponent } from './users/users.component';
 import { PaymentmodesComponent } from './paymentmodes/paymentmodes.component';
 import { modulesComponent } from './modules/modules.component';
 import { MenusComponent } from './menus/menus.component';
+import { MenufilterPipe } from './menufilter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MenusComponent } from './menus/menus.component';
     UsersComponent,
     PaymentmodesComponent,
     modulesComponent,
-    MenusComponent
+    MenusComponent,
+    MenufilterPipe
   ],
   imports: [
     CommonModule,

@@ -54,12 +54,12 @@ export class TitlesComponent implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         this.api.delete("titles/" + id).subscribe((result:any)=>{
-          this.load()
+          this.load();
+          swal.fire(
+            'Deleted!'
+          )
         })
-        swal.fire(
-          'Deleted!',
-         
-        )
+       
       }
     })
       
@@ -74,7 +74,7 @@ export class TitlesComponent implements OnInit{
         icon: 'success',
         title: 'Your data has been saved',
         showConfirmButton: false,
-        timer: 1500
+        timer: 500
       })
       
     })
@@ -86,7 +86,7 @@ export class TitlesComponent implements OnInit{
           icon: 'success',
           title: 'Data updated!',
           showConfirmButton: false,
-          timer: 1500
+          timer: 500
         })
         
       })

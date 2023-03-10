@@ -27,7 +27,7 @@ export class PaymentmodesComponent implements OnInit {
 
   load() {
     this.id = 0;
-    this.api.get("paymentmodes").subscribe((result: any) => {
+    this.api.get("paymentmodes/").subscribe((result: any) => {
       this.result = result.data;
     })
     this.formdata = new FormGroup({

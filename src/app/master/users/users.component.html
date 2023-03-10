@@ -4,7 +4,7 @@
             <div>Users</div>
         </div>
         <div class="page-title-actions">
-            <label class="text-danger">Count: {{ result.length }}</label>
+            <label class="text-danger" *ngIf="result">Count: {{ result.length }}</label>
         </div>
     </div>
 </div>
@@ -18,24 +18,25 @@
                     <div class="position-relative form-group">
                         <div class="row">
                         <div class="col-md-4">
-                            <label>Name<span class="text-danger">*</span></label>
-                        <input placeholder="name" type="text"formControlName="name"  class="form-control">
+                            <label>Names<span class="text-danger">*</span></label>
+                        <input placeholder="Name" type="text"formControlName="name"  class="form-control">
                         <em class="error text-danger small" *ngIf="formdata.controls.name.touched && formdata.controls.name.invalid">Please enter your firstname</em>
                         </div>
                         <div class="col-md-4">
                             <label>Username<span class="text-danger">*</span></label>
-                        <input placeholder="username" type="text"formControlName="username"  class="form-control">
+                        <input placeholder="Username" type="text"formControlName="username"  class="form-control">
                         <em class="error text-danger small" *ngIf="formdata.controls.username.touched && formdata.controls.username.invalid">Please enter username</em>
                         </div>
                         <div class="col-md-4">
                             <label>Password<span class="text-danger">*</span></label>
-                        <input placeholder="password" type="text"formControlName="password"  class="form-control">
+                        <input placeholder="Password" type="text"formControlName="password"  class="form-control">
                         <em class="error text-danger small" *ngIf="formdata.controls.password.touched && formdata.controls.password.invalid">Please enter password</em>
                         </div>
                     </div>
                     </div>
 
                     <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
+                    <input type="reset" [disabled]="formdata.invalid" value="Cancel" class="mt-1 ml-2 btn btn-danger">
                 </form>
 
             </div>
@@ -46,7 +47,7 @@
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover table-striped table-bordered">
-                    <thead class="text-center">
+                    <thead class="text-left">
                         <tr>
                             <th style="width: 150px;">Action</th>
                             <th style="width: 80px;">No</th>
@@ -57,11 +58,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of result; let i=index" class="text-center">
+                        <tr *ngFor="let data of result; let i=index" class="text-left">
                             <td class="text-center">
                                 
-                                <button (click)="edit(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-primary"><i class="pe-7s-tools btn-icon-wrapper"> </i></button>
-                                <button (click)="delete(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                <button (click)="edit(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-primary" data-bs-toggle="tooltip" title="Edit"><i class="pe-7s-tools btn-icon-wrapper"> </i></button>
+                                <button (click)="delete(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
 
                             </td>
                             <td>{{i+1}}</td>

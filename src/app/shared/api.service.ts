@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ApiService {
 
   baseurl="http://localhost:8081/"
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient , toastr:ToastrService) { }
 
   getHeader(){
     var reqHeader = new HttpHeaders({ 

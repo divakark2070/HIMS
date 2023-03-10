@@ -10,10 +10,10 @@ import swal from 'sweetalert2';
 })
 export class modulesComponent implements OnInit{
   formdata: any;
-  result: any;
+  results: any;
   id = 0;
 
-  constructor(private api: ApiService) { }
+  constructor(public api: ApiService) { }
 
   ngOnInit(): void {
     this.load();
@@ -21,13 +21,14 @@ export class modulesComponent implements OnInit{
 
   load() {
     this.id = 0;
-    this.api.get("modules").subscribe((result: any) => {
-      this.result = result.data;
+    this.api.get("modules/").subscribe((result: any) => {
+      this.results = result.data;
+      // console.log(result);
     })
     this.formdata = new FormGroup({
         srno:new FormControl("",Validators.compose([Validators.required])),
         name:new FormControl("",Validators.compose([Validators.required])),
-       
+        image:new FormControl(""),
         link:new FormControl("",Validators.compose([Validators.required])),
     })
   };
@@ -35,12 +36,17 @@ export class modulesComponent implements OnInit{
   edit(id: any) {
     this.id = id;
     this.api.get("modules/" + id).subscribe((result: any) => {
-      this.formdata = new FormGroup({
-        srno:new FormControl(result.data.srno,Validators.compose([Validators.required])),
-        name:new FormControl(result.data.name,Validators.compose([Validators.required])),
-        
-        link:new FormControl(result.data.link,Validators.compose([Validators.required])),
-      })
+      this.formdata.patchValue({
+        srno: result.data.srno,
+        name: result.data.name,
+        link: result.data.link
+      });
+      // this.formdata = new FormGroup({
+      //   srno:new FormControl(result.data.srno,Validators.compose([Validators.required])),
+      //   name:new FormControl(result.data.name,Validators.compose([Validators.required])),
+      //   image:new FormControl(""),
+      //   link:new FormControl(result.data.link,Validators.compose([Validators.required])),
+      // })
     })
   };
 
@@ -67,9 +73,15 @@ export class modulesComponent implements OnInit{
   }
 
   submit(data: any) {
+    // console.log(data);
     if (this.id == 0) {
+      if(data.image == ""){
+        alert("Please select image");
+        return;
+      }
       this.api.post("modules", data).subscribe((result: any) => {
         this.load();
+        (<HTMLInputElement>document.getElementById("image")).value = "";
         swal.fire({
           icon: 'success',
           title: 'Your data has been saved',
@@ -90,6 +102,22 @@ export class modulesComponent implements OnInit{
         })
 
       })
+    }
+  }
+  
+  imageChanged(event:any){
+   
+    // console.log(imagectrl);
+
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = ()=>{
+      if(reader.result != null){
+        this.formdata.patchValue({
+          image: reader.result.toString().substring(reader.result.toString().indexOf(",") + 1)
+        });
+      }
     }
   }
 

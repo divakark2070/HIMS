@@ -9,6 +9,9 @@ import { GeneralModule } from './general/general.module';
 import { LoginComponent } from './login/login.component';
 import { MasterModule } from './master/master.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { timeout } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,14 @@ import { SharedModule } from './shared/shared.module';
     MasterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut:500,
+      progressBar:true,
+      progressAnimation:'increasing'
+    }),
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

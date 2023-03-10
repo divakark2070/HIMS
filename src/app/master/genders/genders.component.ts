@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/api.service';
 import swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class GendersComponent  implements OnInit{
   result:any;
   id = 0;
 
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService, private toastr : ToastrService){}
 
 
   ngOnInit(): void {
@@ -47,51 +48,68 @@ export class GendersComponent  implements OnInit{
 
   delete(id:any){
     swal.fire({
+      position:'center-right',
       title: 'Are you sure?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes'
     }).then((result) => {
       if (result.isConfirmed) {
         this.api.delete("genders/" + id).subscribe((result:any)=>{
           this.load()
-        })
-        swal.fire(
-          'Deleted!',
-         
-        )
+        });
+        this.toastr.success('Deleted Sccessfully','Gender')       
+      }
+      else{
+        this.toastr.error('Something went wrong','Not Deleted')
       }
     })
       
     
   }
+  
+   
 
   submit(data:any){
     if(this.id==0){
     this.api.post("genders", data).subscribe((result:any)=>{
       this.load();
-      swal.fire({
-        icon: 'success',
-        title: 'Your data has been saved',
-        showConfirmButton: false,
-        timer: 1500
-      })
+       this.toastr.success('Saved Successfully','Gender');
+      // swal.fire({
+      //   icon: 'success',
+      //   title: 'Your data has been saved',
+      //   showConfirmButton: false,
+      //   timer: 1000
+      // })
       
     })
+    
     }
-    else{
+   
+    else if(this.id!=0){
       this.api.put("genders/" + this.id, data).subscribe((result:any)=>{
         this.load();
-        swal.fire({
-          icon: 'success',
-          title: 'Data updated!',
-          showConfirmButton: false,
-          timer: 1500
-        })
+        this.toastr.success('Updated Successfully','Gender');
+        // swal.fire({
+        //   icon: 'success',
+        //   title: 'Data updated!',
+        //   showConfirmButton: false,
+        //   timer: 1000
+        // })
         
       })
     }
+      else{
+       this.toastr.error('Something went wrong','Not Deleted')
+     }
+
+   
   }
 
+
+  
+  
+
 }
+   
