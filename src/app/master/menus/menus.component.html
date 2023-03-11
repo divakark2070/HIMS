@@ -36,7 +36,6 @@
                                 <option value="0">Menu</option>
                                 <option *ngFor="let menu of parentMenus | paginate: { itemsPerPage:itemsPerPage , currentPage: p };" value="{{ menu.id }}">{{ menu.title }}</option>
                             </select>
-                        <em class="error text-danger small" *ngIf="formdata.controls.menuid.touched && formdata.controls.menuid.invalid">Please enter menuid</em>
                         </div>
                         <div class="col-md-4 mt-2">
                             <label>Sr.No<span class="text-danger">*</span></label>
@@ -44,14 +43,12 @@
                         <em class="error text-danger small" *ngIf="formdata.controls.srno.touched && formdata.controls.srno.invalid">Please enter srno</em>
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label>Icon<span class="text-danger">*</span></label>
+                            <label>Icon</label>
                         <input placeholder="Icon" type="text"formControlName="icon"  class="form-control">
-                        <em class="error text-danger small" *ngIf="formdata.controls.icon.touched && formdata.controls.icon.invalid">Please enter icon</em>
                         </div>
                         <div class="col-md-4 mt-2">
-                            <label>Link<span class="text-danger">*</span></label>
+                            <label>Link</label>
                         <input placeholder="Link" type="text"formControlName="link"  class="form-control">
-                        <em class="error text-danger small" *ngIf="formdata.controls.link.touched && formdata.controls.link.invalid">Please enter link</em>
                         </div>
                     </div>
                     </div>

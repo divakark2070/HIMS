@@ -28,7 +28,7 @@ export class ReligionsComponent  implements OnInit{
 
   load(){
     this.id = 0;
-    this.api.get("religions").subscribe((result:any)=>{
+    this.api.get("religions/").subscribe((result:any)=>{
       this.result = result.data;
     })
     this.formdata= new FormGroup({

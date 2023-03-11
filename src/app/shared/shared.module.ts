@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './api.service';
 import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
+import { MenufilterPipe } from './menufilter.pipe';
 
 
 
@@ -15,7 +16,8 @@ import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    MenufilterPipe
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    MenufilterPipe,
     FormsModule,
     ReactiveFormsModule
   ],

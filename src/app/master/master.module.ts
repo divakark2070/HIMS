@@ -13,7 +13,7 @@ import { UsersComponent } from './users/users.component';
 import { PaymentmodesComponent } from './paymentmodes/paymentmodes.component';
 import { modulesComponent } from './modules/modules.component';
 import { MenusComponent } from './menus/menus.component';
-import { MenufilterPipe } from './menufilter.pipe';
+import { MenufilterPipe } from '../shared/menufilter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BedsComponent } from './beds/beds.component';
 import { BloodgroupsComponent } from './bloodgroups/bloodgroups.component';
@@ -46,7 +46,6 @@ import { UsertypesComponent } from './usertypes/usertypes.component';
     PaymentmodesComponent,
     modulesComponent,
     MenusComponent,
-    MenufilterPipe,
     BedsComponent,
     BloodgroupsComponent,
     CategoriesComponent,

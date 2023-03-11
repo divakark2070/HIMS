@@ -50,11 +50,11 @@ export class MenusComponent implements OnInit{
     this.api.get("menus/" + id).subscribe((result: any) => {
       this.formdata = new FormGroup({
         title:new FormControl(result.data.title,Validators.compose([Validators.required])),
-        canhavechilds:new FormControl(result.data.child),
-        menuid:new FormControl(result.data.menuid,Validators.compose([Validators.required])),
+        canhavechilds:new FormControl(result.data.canhavechilds == 1 ? true : false),
+        menuid:new FormControl(result.data.menuid),
         srno:new FormControl(result.data.srno,Validators.compose([Validators.required])),
-        icon:new FormControl(result.data.icon,Validators.compose([Validators.required])),
-        link:new FormControl(result.data.link,Validators.compose([Validators.required])),
+        icon:new FormControl(result.data.icon),
+        link:new FormControl(result.data.link),
       })
     })
   };

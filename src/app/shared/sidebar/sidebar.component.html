@@ -33,148 +33,17 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Menu</li>
-                <li class="mm-active">
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-rocket"></i>Master
+                <li *ngFor="let data of parentMenus;" routerLinkActive="mm-active">
+                    <a style="cursor:pointer;">
+                        <i class="metismenu-icon pe-7s-rocket"></i>{{ data.title }}
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
-                        <li>
-                            <a routerLink="/master/titles" routerLinkActive="mm-active">
-                                <i class="metismenu-icon"></i>Titles
+                        <li *ngFor="let menu of menus | menufilter:data">
+                            <a routerLink="/{{ menu.link }}" routerLinkActive="mm-active">
+                                <i class="metismenu-icon"></i>{{ menu.title }}
                             </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/users" routerLinkActive="mm-active">
-                                <i class="metismenu-icon"></i>Users
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/states" routerLinkActive="mm-active">
-                                <i class="metismenu-icon"></i>States
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/genders" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Genders
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/paymentmodes" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Paymentmode
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/modules" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Modules
-                            </a>
-                        </li> 
-                        <li>
-                            <a routerLink="/master/menus" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Menus
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/master/beds" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Beds
-                            </a>
-                        </li> 
-                        <li>
-                            <a routerLink="/master/bloodgroups" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Bloodgroups
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/concessionauthorities" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Concessionauthorities
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/configurations" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Configurations
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/departments" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Departments
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/ipdoptions" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Ipdoptions
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/ipdservices" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Ipdservices
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/labs" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Labs
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/languages" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Languages
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/nationalities" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Nationalities
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/opdservices" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Opdservices
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/relations" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Relations
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/religions" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Religions
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/rooms" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Rooms
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/specializations" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Specializations
-                            </a>
-                        </li>    
-                        <li>
-                            <a routerLink="/master/usertypes" routerLinkActive="mm-active">
-                                <i class="metismenu-icon">
-                                </i>Usertypes
-                            </a>
-                        </li>                 
+                        </li>                          
                     </ul>
                 </li>
             </ul>

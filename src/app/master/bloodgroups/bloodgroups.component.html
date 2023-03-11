@@ -4,7 +4,7 @@
             <div>Bloodgroups</div>
         </div>
         <div class="page-title-actions">
-            <label class="text-danger">Count: {{ result.length }}</label>
+            <label class="text-danger" *ngIf="result">Count: {{ result.length }}</label>
         </div>
     </div>
 </div>
