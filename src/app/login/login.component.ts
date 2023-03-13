@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
 
       if(result.status == "failed"){
         this.message=result.data;
-        console.log(result.data);
+        // console.log(result.data);
       }
        if(result.status=="success"){
         // localStorage.setItem("token",result.token);
