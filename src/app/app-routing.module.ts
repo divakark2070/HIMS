@@ -7,10 +7,8 @@ const routes: Routes = [
   {path:'', component:LoginComponent, pathMatch:'full'},
   {path:'demo',component:SidebarComponent},
   {path:'general', loadChildren:()=>import('./general/general.module').then(m=>m.GeneralModule)},
-  {path:'master', loadChildren:()=>import('./master/master.module').then(m=>m.MasterModule)}
-
-  
-
+  {path:'master', loadChildren:()=>import('./master/master.module').then(m=>m.MasterModule)},
+  {path:'pharmacy', loadChildren:()=>import('./pharmacy/pharmacy.module').then(m=>m.PharmacyModule)}
 ];
 
 @NgModule({

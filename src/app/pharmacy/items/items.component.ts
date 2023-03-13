@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/shared/api.service';
 import swal from 'sweetalert2';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-menus',
-  templateUrl: './menus.component.html',
-  styleUrls: ['./menus.component.css']
+  selector: 'app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
-export class MenusComponent implements OnInit{
+export class ItemsComponent implements OnInit{
   formdata: any;
   result: any;
-  parentMenus:any;
+  parentitems:any;
   id = 0;
   p:number=0;
   itemsPerPage:number=30;
@@ -26,10 +26,10 @@ export class MenusComponent implements OnInit{
 
   load() {
     this.id = 0;
-    this.api.get("menus/").subscribe((result: any) => {
+    this.api.get("items/").subscribe((result: any) => {
       this.result = result.data;
       console.log(this.result);
-      this.parentMenus = this.result.filter((menu:any, i:number)=>{
+      this.parentitems = this.result.filter((menu:any, i:number)=>{
         if(menu.child === "True"){
           return menu;
         }
@@ -44,10 +44,9 @@ export class MenusComponent implements OnInit{
       link:new FormControl("",Validators.compose([Validators.required])),
     })
   };
-
   edit(id: any) {
     this.id = id;
-    this.api.get("menus/" + id).subscribe((result: any) => {
+    this.api.get("items/" + id).subscribe((result: any) => {
       this.formdata = new FormGroup({
         title:new FormControl(result.data.title,Validators.compose([Validators.required])),
         canhavechilds:new FormControl(result.data.canhavechilds == 1 ? true : false),
@@ -58,7 +57,6 @@ export class MenusComponent implements OnInit{
       })
     })
   };
-
   reset(){
     this.id = 0;
     this.formdata = new FormGroup({
@@ -69,8 +67,7 @@ export class MenusComponent implements OnInit{
       icon:new FormControl("",Validators.compose([Validators.required])),
       link:new FormControl("",Validators.compose([Validators.required])),
     })
-  }
-
+  };
   delete(id: any) {
     swal.fire({
       position:'center',
@@ -81,7 +78,7 @@ export class MenusComponent implements OnInit{
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.api.delete("menus/" + id).subscribe((result: any) => {
+        this.api.delete("items/" + id).subscribe((result: any) => {
           this.load()
         })
         this.toastr.success('Deleted Sccessfully','Menu')
@@ -93,39 +90,29 @@ export class MenusComponent implements OnInit{
 
 
   };
-
   submit(data: any) {
     console.log(data);
     
     if (this.id == 0) {
-      this.api.post("menus", data).subscribe((result: any) => {
+      this.api.post("items", data).subscribe((result: any) => {
         this.load();
         this.toastr.success('Saved Sccessfully','Menu')
-        // swal.fire({
-        //   icon: 'success',
-        //   title: 'Your data has been saved',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
-
-      })
+})
     }
     else if(this.id!=0){
-      this.api.put("menus/" + this.id, data).subscribe((result: any) => {
+      this.api.put("items/" + this.id, data).subscribe((result: any) => {
         this.load();
         this.toastr.success('Updated Successfully','Menu')
-        // swal.fire({
-        //   icon: 'success',
-        //   title: 'Data updated!',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
-
-      })
+ })
     }
     else{
       this.toastr.error('Something went wrong','Not Deleted')
     };
   }
+
+
+  
+
+
 
 }

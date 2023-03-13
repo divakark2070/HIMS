@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './api.service';
 import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
 import { MenufilterPipe } from './menufilter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -24,7 +25,8 @@ import { MenufilterPipe } from './menufilter.pipe';
     RouterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports:[
     HeaderComponent,
@@ -32,7 +34,8 @@ import { MenufilterPipe } from './menufilter.pipe';
     SidebarComponent,
     MenufilterPipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers:[ApiService, {
     provide:HTTP_INTERCEPTORS,
