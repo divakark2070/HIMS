@@ -4,113 +4,110 @@
             <div>Items</div>
         </div>
         <div class="page-title-actions">
-            <label class="text-danger" *ngIf="result">Count: {{ result.length }}</label>
+            <!-- <label class="text-danger" *ngIf="result">Count: {{ result.length }}</label> -->
+            <button class="btn btn-primary" routerLink="/pharmacy/item">ADD+</button>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)" class="">
-                    <div class="position-relative form-group">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>ITEM<span class="text-danger">*</span></label>
-                                <input placeholder="Title" type="text" formControlName="title" class="form-control">
-                                <em class="error text-danger small"
-                                    *ngIf="formdata.controls.title.touched && formdata.controls.title.invalid">Please
-                                    enter title</em>
-                            </div>
-
-                            <!-- <div class="col-md-4">
-                            <label>Parent Menu<span class="text-danger">*</span></label>
-                            <select class="form-control" formControlName="menuid">
-                                <option value="0">Menu</option>
-                                <option *ngFor="let menu of parentMenus | paginate: { itemsPerPage:itemsPerPage , currentPage: p };" value="{{ menu.id }}">{{ menu.title }}</option>
+  
+    <!-- <div class="card col-lg-12">
+        <div class="card-body">
+            <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)" class="">
+                <div class="position-relative form-group">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>ITEM<span class="text-danger">*</span></label>
+                            <input placeholder="Item" type="text" formControlName="items" class="form-control">
+                            <em class="error text-danger small"
+                                *ngIf="formdata.controls.item.touched && formdata.controls.item.invalid">Please
+                                enter item</em>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Medicine Type<span class="text-danger">*</span></label>
+                            <select class="form-control" formControlName="mtype">
+                                <option value="0">Capsule</option>
+                                <option
+                                    *ngFor="let item of parentitems | paginate: { itemsPerPage:itemsPerPage , currentPage: p };"
+                                    value="{{ item.id }}">{{ item.title }}</option>
                             </select>
-                        </div> -->
-                            <div class="col-md-4">
-                                <label>Medicine Type<span class="text-danger">*</span></label>
-                                <select class="form-control" formControlName="mtype">
-                                    <option value="0">Capsule</option>
-                                    <option
-                                        *ngFor="let item of parentitems | paginate: { itemsPerPage:itemsPerPage , currentPage: p };"
-                                        value="{{ item.id }}">{{ item.title }}</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-4 ">
-                                <label>Sr.No<span class="text-danger">*</span></label>
-                                <input placeholder="SrNo" type="text" formControlName="srno" class="form-control">
-                                <em class="error text-danger small"
-                                    *ngIf="formdata.controls.srno.touched && formdata.controls.srno.invalid">Please
-                                    enter srno</em>
-                            </div>
-
-
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Sr.No<span class="text-danger">*</span></label>
+                            <input placeholder="SrNo" type="text" formControlName="srno" class="form-control">
+                            <em class="error text-danger small"
+                                *ngIf="formdata.controls.srno.touched && formdata.controls.srno.invalid">Please
+                                enter srno</em>
                         </div>
                     </div>
+                </div>
 
-                    <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
-                    <span (click)="reset()" class="mt-1 ml-2 btn btn-danger">Cancel</span>
-                </form>
+                <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
+                <span (click)="reset()" class="mt-1 ml-2 btn btn-danger">Cancel</span>
+            </form>
 
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-12 mt-2">
-        <div class="card">
-            <div class="card-body">
-
-            </div>
-            <div>
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="col-lg-12 mt-2">
-        <div class="card">
-            <div class="card-body">
-                <table class="table table-hover table-striped table-bordered">
-                    <thead class="text-left">
-                        <tr>
-                            <th style="width: 150px;">Action</th>
-                            <th style="width: 80px;">No</th>
-                            <th>Title</th>
-                            <th>Childs</th>
-                            <th>Menuid</th>
-                            <th>SrNo</th>
-                            <th>Icon</th>
-                            <th>Link</th>
-                         
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let data of result; let i=index" class="text-center">
-                            <td class="text-left">
-                                
-                                <button (click)="edit(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-primary" data-bs-toggle="tooltip" title="Edit"><i class="pe-7s-tools btn-icon-wrapper"> </i></button>
-                                <button (click)="delete(data.id)" class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-
-                            </td>
-                            <td>{{i+1}}</td>
-                            <td>{{data.title}}</td>
-                            <td>{{data.child}}</td>                         
-                            <td>{{data.menuid}}</td>
-                            <td>{{data.srno}}</td>
-                            <td>{{data.icon}}</td>
-                            <td>{{data.link}}</td>
-                           
-                          
-                        </tr>
-                    </tbody>
-
-                </table>
-
-
-            </div>
         </div>
     </div> -->
+    <!-- <div class="row"> -->
+        <div class="mt-2">
+            <div class="card col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead class="text-left">
+                                <tr>
+                                    <!-- <th style="width: 150px;">ACTION</th> -->
+                                    <th>NO</th>
+                                    <th>MTYPE</th>
+                                    <th>NAME</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>MANU_COMPANYID</th>
+                                    <th>MARK_COMPANYID</th>
+                                    <th>SUBQUANTITY</th>
+                                    <th>ALLOWDISCOUNT</th>
+                                    <th>GSTPERCENT</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of result; let i=index" class="text-center">
+                                    <!-- <td class="text-left">
+
+                                        <button (click)="edit(data.id)"
+                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-primary"
+                                            data-bs-toggle="tooltip" title="Edit"><i
+                                                class="pe-7s-tools btn-icon-wrapper"> </i></button>
+                                        <button (click)="delete(data.id)"
+                                            class="mb-2 mr-2 btn-icon btn-icon-only btn-pill btn btn-danger"
+                                            data-bs-toggle="tooltip" title="Delete"><i
+                                                class="pe-7s-trash btn-icon-wrapper"> </i></button>
+
+                                    </td> -->
+                                    <td>{{i+1}}</td>
+                                    <td>{{data.mtype}}</td>
+                                    <td>{{data.name}}</td>
+                                    <td>{{data.description}}</td>
+                                    <td>{{data.manu_companyid}}</td>
+                                    <td>{{data.mark_companyid}}</td>
+                                    <td>{{data.subquantity}}</td>
+                                    <td>{{data.allowdiscount}}</td>
+                                    <td>{{data.gstpercent}}</td>
+
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+
 </div>

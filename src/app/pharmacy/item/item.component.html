@@ -1,0 +1,52 @@
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div>Item</div>
+        </div>
+        <div class="page-title-actions">
+         
+            <button class="btn btn-primary" routerLink="/pharmacy/items">Back</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+  
+    <div class="card col-lg-12">
+        <div class="card-body">
+            <form [formGroup]="formdata"  class="">
+                <div class="position-relative form-group">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>ITEM<span class="text-danger">*</span></label>
+                            <input placeholder="Item" type="text" formControlName="items" class="form-control">
+                            <em class="error text-danger small"
+                                *ngIf="formdata.controls.item.touched && formdata.controls.item.invalid">Please
+                                enter item</em>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Medicine Type<span class="text-danger">*</span></label>
+                            <select class="form-control" formControlName="mtype">
+                                <option value="0">Capsule</option>
+                                <option
+                                    *ngFor="let item of parentitems | paginate: { itemsPerPage:itemsPerPage , currentPage: p };"
+                                    value="{{ item.id }}">{{ item.title }}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Sr.No<span class="text-danger">*</span></label>
+                            <input placeholder="SrNo" type="text" formControlName="srno" class="form-control">
+                            <em class="error text-danger small"
+                                *ngIf="formdata.controls.srno.touched && formdata.controls.srno.invalid">Please
+                                enter srno</em>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" [disabled]="formdata.invalid" value="Save" class="mt-1 btn btn-primary">
+                <span (click)="reset()" class="mt-1 ml-2 btn btn-danger">Cancel</span>
+            </form>
+
+        </div>
+    </div>
+    </div>

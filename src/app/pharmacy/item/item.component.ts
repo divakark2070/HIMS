@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/shared/api.service';
-import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css']
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css']
 })
-export class ItemsComponent implements OnInit{
+export class ItemComponent implements OnInit{
+  
+  
+ 
   formdata: any;
-  result: any;
   parentitems:any;
-  id = 0;
+  result:any
+  id=0;
   p:number=0;
   itemsPerPage:number=30;
   items:any;
 
-  constructor(private api: ApiService, private toastr:ToastrService) { }
+  constructor(private api:ApiService){}
+
 
   ngOnInit(): void {
-    this.load();
+   
   }
-
   load() {
     // this.id = 0;
     this.api.get("pharmacy/items").subscribe((result: any) => {
@@ -38,17 +39,17 @@ export class ItemsComponent implements OnInit{
       //   }
     //   })
     // })
-    // this.formdata = new FormGroup({
-    //   title:new FormControl("",Validators.compose([Validators.required])),
-    //   canhavechilds:new FormControl(false),
-    //   menuid:new FormControl(0,Validators.compose([Validators.required])),
-    //   srno:new FormControl("",Validators.compose([Validators.required])),
-    //   icon:new FormControl("",Validators.compose([Validators.required])),
-    //   link:new FormControl("",Validators.compose([Validators.required])),
-    // })
+    this.formdata = new FormGroup({
+      mtype:new FormControl("",Validators.compose([Validators.required])),
+      // canhavechilds:new FormControl(false),
+      // menuid:new FormControl(0,Validators.compose([Validators.required])),
+      // srno:new FormControl("",Validators.compose([Validators.required])),
+      // icon:new FormControl("",Validators.compose([Validators.required])),
+      // link:new FormControl("",Validators.compose([Validators.required])),
+    })
   });
 }
-}
+
 //   edit(id: any) {
 //     this.id = id;
 //     this.api.get("items/" + id).subscribe((result: any) => {
@@ -62,17 +63,17 @@ export class ItemsComponent implements OnInit{
 //       })
 //     })
 //   };
-//   reset(){
-//     this.id = 0;
-//     this.formdata = new FormGroup({
-//       title:new FormControl("",Validators.compose([Validators.required])),
-//       canhavechilds:new FormControl(false),
-//       menuid:new FormControl(0,Validators.compose([Validators.required])),
-//       srno:new FormControl("",Validators.compose([Validators.required])),
-//       icon:new FormControl("",Validators.compose([Validators.required])),
-//       link:new FormControl("",Validators.compose([Validators.required])),
-//     })
-//   };
+  reset(){
+    this.id = 0;
+    this.formdata = new FormGroup({
+      title:new FormControl("",Validators.compose([Validators.required])),
+      canhavechilds:new FormControl(false),
+      menuid:new FormControl(0,Validators.compose([Validators.required])),
+      srno:new FormControl("",Validators.compose([Validators.required])),
+      icon:new FormControl("",Validators.compose([Validators.required])),
+      link:new FormControl("",Validators.compose([Validators.required])),
+    })
+  };
 //   delete(id: any) {
 //     swal.fire({
 //       position:'center',
@@ -114,9 +115,11 @@ export class ItemsComponent implements OnInit{
 //       this.toastr.error('Something went wrong','Not Deleted')
 //     };
 //   }
+}
 
 
-  
+
+
 
 
 
